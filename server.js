@@ -5,23 +5,38 @@ const fs = require("fs");
 
 // Starts Express server
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 // Lets Express use data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// HTML Routes
-// =============================================================
+app.use(express.static("public"));
 
-// Starter route
+// Routes
+// =============================================================
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
+
+app.get("/api/notes", function (req, res) {
+    return res.sendFile(path.join(__dirname, "./db/db.json"));
+});
+
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
-app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "./public/notes.html"));
+app.post("/api/notes", function (req, res) {
+    let notesList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let addNote = req.body;
+
+    notesList.push(addNote);
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(notesList));
+    res.json(addNote);
 });
+
 
 // Start Server
 // =============================================================
