@@ -1,14 +1,22 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Description",
   "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
-    "start": "server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "Caleb Hopkins",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalebTheCreative/Note-Taker.git"
+  },
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+  "bugs": {
+    "url": "https://github.com/CalebTheCreative/Note-Taker/issues"
+  },
+  "homepage": "https://github.com/CalebTheCreative/Note-Taker#readme"
 }
